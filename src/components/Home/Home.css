@@ -1,0 +1,12 @@
+.bannar{
+    background-image: url('https://i.ibb.co/pWK9ZQj/banner.jpg');
+    background-size: cover;
+    height: 90vh;
+    background-position: center;
+  }
+.topSpace{
+    margin-top: -150px;
+}
+.rounded{
+    border-radius: 20px !important;
+}

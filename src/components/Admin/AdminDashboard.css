@@ -1,0 +1,10 @@
+.fullHeight{
+    height: 85vh;
+}
+
+.background{
+    background-color: #e6edf7;
+}
+.rounded{
+    border-radius: 20px !important;
+}

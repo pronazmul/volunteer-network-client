@@ -1,0 +1,49 @@
+Project installation Command: 
+    npx create-react-app client
+
+Bootstrap insatallation: 
+    npm install --save bootstrap
+    Import in index.js: '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+
+@Images Links
+
+        https://i.ibb.co/MR2ZvS3/trash.png
+        https://i.ibb.co/LQXw7mx/upload.png
+        https://i.ibb.co/Jc6ZbLQ/users.png
+        https://i.ibb.co/fYcgC8L/add.png
+        https://i.ibb.co/GQYn4Tp/logo.png
+        https://i.ibb.co/pWK9ZQj/banner.jpg
+        https://i.ibb.co/9vjdGtz/google.png
+
+@Routing Setup: 
+    Installation Command: npm install react-router-dom --save
+
+    Import nessary Tools: 
+                        import {
+                        BrowserRouter as Router,
+                        Switch,
+                        Route,
+                        Link
+                        } from "react-router-dom"
+
+    Make Router:
+                    <Router>
+                          <Header></Header>
+                        <Route exact path='/'>
+                          <Shops></Shops>
+                        </Route>
+
+                        <Route path='/review'>
+                          <Review></Review>
+                        </Route>
+
+                        <Route path='/inventory'>
+                          <Inventory></Inventory>
+                        </Route>
+
+                        <Route path='*'>
+                          <NotFound></NotFound>
+                        </Route>
+                        
+                    </Router>
