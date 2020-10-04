@@ -5,14 +5,14 @@ import './AdminDashboard.css'
 const AdminDashboard = () => {
 const[allUser, setAllUser] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/allUser')
+        fetch('https://blooming-earth-11428.herokuapp.com/allUser')
         .then(res=>res.json())
         .then(data=> setAllUser(data))
     },[])
 
 const deleteTask =(id)=>{
     const deletedId = id
-    fetch(`http://localhost:5000/deleteTask/${id}`,{method:'DELETE'})
+    fetch(`https://blooming-earth-11428.herokuapp.com/deleteTask/${id}`,{method:'DELETE'})
     .then(res=> res.json())
     .then(data=> {
         const existTask = allUser.filter(user =>user._id != deletedId)

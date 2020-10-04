@@ -9,7 +9,7 @@ const ResisterEvent = () => {
     const [selectedTask, setSelectedTask] = useState({})
     const {key} = useParams()
     useEffect(()=>{
-        fetch(`http://localhost:5000/singleTask?id=${key}`)
+        fetch(`https://blooming-earth-11428.herokuapp.com/singleTask?id=${key}`)
         .then(res=>res.json())
         .then(data=> setSelectedTask(data))
     },[])
@@ -19,7 +19,7 @@ const ResisterEvent = () => {
         const description = document.getElementById('description').value
         const userData = {...loginUser,...selectedTask,description:description, date:date}
 
-        fetch("http://localhost:5000/userTask",{
+        fetch("https://blooming-earth-11428.herokuapp.com/userTask",{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify(userData)
