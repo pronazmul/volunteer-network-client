@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AdminDashboard.css'
 
 const AdminDashboard = () => {
+const[allUser, setAllUser] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:5000/allUser')
+        .then(res=>res.json())
+        .then(data=> setAllUser(data))
+    },[])
+
+const deleteTask =(id)=>{
+    const deletedId = id
+    fetch(`http://localhost:5000/deleteTask/${id}`,{method:'DELETE'})
+    .then(res=> res.json())
+    .then(data=> {
+        const existTask = allUser.filter(user =>user._id != deletedId)
+        setAllUser(existTask)
+    })
+}
     return (
         <>
             <div className='container'>
@@ -46,27 +62,16 @@ const AdminDashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Nazmul Huda</td>
-                                        <td>nazmul@gmail.com</td>
-                                        <td>2 Sep 2020</td>
-                                        <td>Chield Refuge</td>
-                                        <td><button class='btn btn-danger'><img height='20' src="https://i.ibb.co/MR2ZvS3/trash.png" alt=""/></button></td>                                        
+                                    
+                                    {allUser.map(user=>
+                                    <tr key={user._id} >
+                                        <td>{user.name}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.date}</td>
+                                        <td>{user.task}</td>
+                                        <td><button onClick={()=>deleteTask(user._id)} class='btn btn-danger'><img height='20' src="https://i.ibb.co/MR2ZvS3/trash.png" alt=""/></button></td>                                        
                                     </tr>
-                                    <tr>
-                                        <td>Nazmul Huda</td>
-                                        <td>nazmul@gmail.com</td>
-                                        <td>2 Sep 2020</td>
-                                        <td>Chield Refuge</td>
-                                        <td><button class='btn btn-danger'><img height='20' src="https://i.ibb.co/MR2ZvS3/trash.png" alt=""/></button></td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Nazmul Huda</td>
-                                        <td>nazmul@gmail.com</td>
-                                        <td>2 Sep 2020</td>
-                                        <td>Chield Refuge</td>
-                                        <td><button class='btn btn-danger'><img height='20' src="https://i.ibb.co/MR2ZvS3/trash.png" alt=""/></button></td>                                        
-                                    </tr>
+                                    )}
 
                                 </tbody>
                             </table>

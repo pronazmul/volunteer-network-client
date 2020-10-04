@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { loginContexApi } from '../Main';
 
 const Navbar = () => {
+    const [loginUser, setLoginUser] = useContext(loginContexApi)
     return (
         <div className="container">
             <nav className="navbar navbar-expand-lg fixed-top">
@@ -17,17 +19,17 @@ const Navbar = () => {
                             <Link className="nav-link text-dark" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link ml-2 text-dark" to="#">Donation</Link>
+                            <Link className="nav-link ml-2 text-dark" to="/tasks">Events</Link>
                         </li>
+                        {loginUser.isSignIn? 
                         <li className="nav-item">
-                            <Link className="nav-link ml-2 text-dark" to="/tasks">Events Task</Link>
+                            <Link onClick={()=>setLoginUser({})} className="nav-link ml-4 btn btn-warning px-3" to="/">Logout</Link>
                         </li>
+                        :
                         <li className="nav-item">
-                            <Link className="nav-link ml-2 text-dark" to="/login">Login</Link>
+                            <Link className="nav-link ml-4 btn btn-primary px-3" to="/login">Login</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link ml-4 btn btn-primary px-3" to="/resister">Resister</Link>
-                        </li>
+                        }
                         <li className="nav-item">
                             <Link className="nav-link ml-2 btn btn-dark px-3" to="/adminDashboard">Admin</Link>
                         </li>

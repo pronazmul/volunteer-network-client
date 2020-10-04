@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom';
 import './AdminDashboard.css'
 
 const AdminAddEvent = () => {
+    const addEvent = ()=>{
+        const name = document.getElementById('name').value
+        const data = {task:name,image:'https://i.ibb.co/6t19x95/download-1.jpg'}
+
+        fetch("http://localhost:5000/addEvent",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(data)
+        })
+        .then(res=> res.json())
+        .then(data=> console.log(data))
+        
+    }
     return (
         <>
             <div className='container'>
@@ -38,7 +51,7 @@ const AdminAddEvent = () => {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label htmlFor="">Event Name</label>
-                                        <input className='form-control' placeholder='Event Name' type="text"/>
+                                        <input id='name' className='form-control' placeholder='Event Name' type="text"/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="">Event Description</label>
@@ -55,7 +68,7 @@ const AdminAddEvent = () => {
                                         <input className='form-control' type="file"/>
                                     </div>
                                 </div>
-                                    <button className='btn btn-primary ml-3'>Add Event</button>
+                                    <button onClick={addEvent} className='btn btn-primary ml-3'>Add Event</button>
                             </div>                     
                         </div>
                     </div>

@@ -15,6 +15,8 @@ Bootstrap insatallation:
         https://i.ibb.co/GQYn4Tp/logo.png
         https://i.ibb.co/pWK9ZQj/banner.jpg
         https://i.ibb.co/9vjdGtz/google.png
+        
+        https://i.ibb.co/6t19x95/download-1.jpg
 
 @Routing Setup: 
     Installation Command: npm install react-router-dom --save

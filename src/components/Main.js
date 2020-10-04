@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import Home from './Home/Home'
 import {
   BrowserRouter as Router,
@@ -11,41 +11,50 @@ import ResisterEvent from './ResisterEvent/ResisterEvent'
 import EventTasks from './EventTasks/EventTasks'
 import AdminDashboard from './Admin/AdminDashboard'
 import AdminAddEvent from './Admin/AdminAddEvent'
+import PrivateRoute from './PrivateRoute/PrivateRoute'
 
-const main = () => {
+export const loginContexApi = createContext()
+const Main = () => {
+  const [loginUser, setLoginUser] = useState({ isSignIn: false, name: '', email: '', photo: '' })
   return (
-    <>
-      <Router>
-          <Route exact path='/'>
-            <Home></Home>
-          </Route>
+            <loginContexApi.Provider value={[loginUser, setLoginUser]}>
+              <Router>
+                <Switch>
+                      <Route exact path='/'>
+                        <Home></Home>
+                      </Route>
 
-          <Route path='/login'>
-            <Login></Login>
-          </Route>
+                      <Route path='/login'>
+                        <Login></Login>
+                      </Route>
 
-          <Route path='/resister'>
-            <ResisterEvent></ResisterEvent>
-          </Route>
+                      <PrivateRoute path='/resister/:key'>
+                        <ResisterEvent></ResisterEvent>
+                      </PrivateRoute>
 
-          <Route path='/tasks'>
-            <EventTasks></EventTasks>
-          </Route>
+                      {/* <Route path='/resister/:key'>
+                        <ResisterEvent></ResisterEvent>
+                      </Route> */}
 
-          <Route path='/adminDashboard'>
-            <AdminDashboard></AdminDashboard>
-          </Route>
-          
-          <Route path='/adminAddEvent'>
-            <AdminAddEvent></AdminAddEvent>
-          </Route>
-          
-          <Route path='*'>
-            <Redirect to="/" />
-          </Route>
-      </Router>
-    </>
+                      <PrivateRoute path='/tasks'>
+                        <EventTasks></EventTasks>
+                      </PrivateRoute>
+
+                      <Route path='/adminDashboard'>
+                        <AdminDashboard></AdminDashboard>
+                      </Route>
+
+                      <Route path='/adminAddEvent'>
+                        <AdminAddEvent></AdminAddEvent>
+                      </Route>
+
+                      <Route path='*'>
+                        <Redirect to="/" />
+                      </Route>
+                  </Switch>
+              </Router>
+            </loginContexApi.Provider>
   )
 }
 
-export default main;
+export default Main;
